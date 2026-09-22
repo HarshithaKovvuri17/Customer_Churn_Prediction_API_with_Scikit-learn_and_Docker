@@ -6,6 +6,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from app.utils import clean_data, NUMERICAL_FEATURES, CATEGORICAL_FEATURES, TARGET_COLUMN
 
 def load_data(filepath: str = 'data/WA_Fn-UseC_-Telco-Customer-Churn.csv') -> pd.DataFrame:
@@ -25,4 +26,5 @@ def train_and_save_model(data_path: str = 'data/WA_Fn-UseC_-Telco-Customer-Churn
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
     pipeline = build_pipeline()
     pipeline.fit(X_train, y_train)
-    return {}
+    y_pred = pipeline.predict(X_test)
+    return {"accuracy": float(accuracy_score(y_test, y_pred)), "precision": float(precision_score(y_test, y_pred, zero_division=0)), "recall": float(recall_score(y_test, y_pred, zero_division=0)), "f1_score": float(f1_score(y_test, y_pred, zero_division=0))}
