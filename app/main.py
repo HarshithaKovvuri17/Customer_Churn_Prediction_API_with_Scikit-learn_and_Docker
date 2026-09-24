@@ -45,3 +45,17 @@ class CustomerData(BaseModel):
             except ValueError:
                 raise ValueError("TotalCharges must be a valid numeric string or number.")
         raise ValueError("TotalCharges must be a numeric value or string.")
+
+    @field_validator('SeniorCitizen')
+    @classmethod
+    def validate_senior_citizen(cls, v):
+        if v not in (0, 1):
+            raise ValueError("SeniorCitizen must be 0 or 1.")
+        return v
+
+    @field_validator('tenure')
+    @classmethod
+    def validate_tenure(cls, v):
+        if v < 0:
+            raise ValueError("tenure must be a non-negative integer.")
+        return v
