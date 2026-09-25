@@ -4,6 +4,14 @@ from app.main import app
 
 client = TestClient(app)
 
+VALID_CUSTOMER_PAYLOAD_1 = {
+    "gender": "Female", "SeniorCitizen": 0, "Partner": "Yes", "Dependents": "Yes", "tenure": 45,
+    "PhoneService": "Yes", "MultipleLines": "No", "InternetService": "DSL", "OnlineSecurity": "Yes",
+    "OnlineBackup": "Yes", "DeviceProtection": "Yes", "TechSupport": "Yes", "StreamingTV": "Yes",
+    "StreamingMovies": "No", "Contract": "Two year", "PaperlessBilling": "No",
+    "PaymentMethod": "Credit card (automatic)", "MonthlyCharges": 65.6, "TotalCharges": 2950.0, "customerID": "7590-VHVEG"
+}
+
 def test_read_root():
     response = client.get("/")
     assert response.status_code == 200
@@ -11,3 +19,10 @@ def test_read_root():
 def test_health_check():
     response = client.get("/health")
     assert response.status_code == 200
+
+def test_predict_valid_customer_1():
+    response = client.post("/predict", json=VALID_CUSTOMER_PAYLOAD_1)
+    assert response.status_code == 200
+    data = response.json()
+    assert "prediction" in data
+    assert "probability" in data
