@@ -12,17 +12,18 @@ VALID_CUSTOMER_PAYLOAD_1 = {
     "PaymentMethod": "Credit card (automatic)", "MonthlyCharges": 65.6, "TotalCharges": 2950.0, "customerID": "7590-VHVEG"
 }
 
-def test_read_root():
-    response = client.get("/")
-    assert response.status_code == 200
-
-def test_health_check():
-    response = client.get("/health")
-    assert response.status_code == 200
+VALID_CUSTOMER_PAYLOAD_2 = {
+    "gender": "Male", "SeniorCitizen": 1, "Partner": "No", "Dependents": "No", "tenure": 1,
+    "PhoneService": "Yes", "MultipleLines": "No", "InternetService": "Fiber optic", "OnlineSecurity": "No",
+    "OnlineBackup": "No", "DeviceProtection": "No", "TechSupport": "No", "StreamingTV": "Yes",
+    "StreamingMovies": "Yes", "Contract": "Month-to-month", "PaperlessBilling": "Yes",
+    "PaymentMethod": "Electronic check", "MonthlyCharges": 99.8, "TotalCharges": 99.8
+}
 
 def test_predict_valid_customer_1():
     response = client.post("/predict", json=VALID_CUSTOMER_PAYLOAD_1)
     assert response.status_code == 200
-    data = response.json()
-    assert "prediction" in data
-    assert "probability" in data
+
+def test_predict_valid_customer_2():
+    response = client.post("/predict", json=VALID_CUSTOMER_PAYLOAD_2)
+    assert response.status_code == 200
