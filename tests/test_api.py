@@ -12,8 +12,8 @@ VALID_CUSTOMER_PAYLOAD_1 = {
     "PaymentMethod": "Credit card (automatic)", "MonthlyCharges": 65.6, "TotalCharges": 2950.0, "customerID": "7590-VHVEG"
 }
 
-def test_predict_missing_required_field():
+def test_predict_invalid_data_type():
     invalid_payload = VALID_CUSTOMER_PAYLOAD_1.copy()
-    del invalid_payload["tenure"]
+    invalid_payload["tenure"] = "invalid_string"
     response = client.post("/predict", json=invalid_payload)
     assert response.status_code == 422
