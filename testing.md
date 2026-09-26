@@ -1,6 +1,6 @@
 # Testing Commands & Verification Guide
 
 ```powershell
-python -m pytest -v
-Invoke-RestMethod -Uri 'http://127.0.0.1:8000/health' -Method Get
+docker build -t churn-prediction-api .
+docker run -d -p 8000:8000 churn-prediction-api
 ```
