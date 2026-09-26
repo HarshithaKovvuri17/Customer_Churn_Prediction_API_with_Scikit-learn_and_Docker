@@ -1,5 +1,14 @@
 services:
   churn-api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: churn_prediction_api
     ports:
       - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - MODEL_PATH=models/churn_pipeline.joblib
+      - ENVIRONMENT=production
+    restart: unless-stopped
