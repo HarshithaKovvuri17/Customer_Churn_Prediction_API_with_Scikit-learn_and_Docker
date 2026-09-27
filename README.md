@@ -1,3 +1,3 @@
 # Customer Churn Prediction API
 
-## Pydantic Schema Validation
+![FastAPI](https://img.shields.io/badge/FastAPI-REST%20API-009688)
