@@ -1,3 +1,3 @@
-# Customer Churn Prediction API
+# Customer Churn Prediction API with Scikit-learn and Docker
 
-Initial repository setup.
+An end-to-end production Machine Learning pipeline.
