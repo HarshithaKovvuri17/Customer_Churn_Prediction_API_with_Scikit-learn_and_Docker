@@ -1,6 +1,3 @@
-# Testing Commands & Verification Guide
+# Testing Guide
 
-```powershell
-docker build -t churn-prediction-api .
-docker run -d -p 8000:8000 churn-prediction-api
-```
+Use `127.0.0.1:8000` for local testing.
