@@ -1,6 +1,3 @@
-# Customer Churn Prediction API with Scikit-learn and Docker
+# Customer Churn Prediction API
 
-## Machine Learning Workflow
-- Preprocessing
-- Training
-- Deployment
+## Pydantic Schema Validation
